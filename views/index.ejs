@@ -1,0 +1,337 @@
+<%-include('partials/header')%>
+
+<div class="side-area">
+
+  <!-- <button id="toggle" class="openbtn" onclick="toggleNav()"> <img src="images/arrow-left-bold-outline.png" alt=""> </button> -->
+<button id="toggle" class="openbtn" onclick="toggleNav()"> <img id="arrow"src="images/arrow-left-bold-outline.png" alt=""> </button>
+  <div id="mySidepanel" class="sidepanel">
+
+    <!-- <a href="javascript:void(0)" class="clostbtn" onclick="closeNav()">x</a> -->
+      <h3>Beat Machine</h3>
+
+  </div>
+</div>
+
+<section class="login-sec">
+<div class="popUp popUpForm">
+  <div class="closeButton">
+    <i class="fa fa-times" aria-hidden="true"></i>
+  </div>
+  <div class="clear"></div>
+  <div class="loginText">
+    <p>Sign Into Your Account</p>
+  </div>
+  <div class="clear"></div>
+  <div class="login">
+    <p>Username:</p>
+    <input type="text" />
+  </div>
+  <div class="clear"></div>
+  <div class="password">
+    <p>Password:</p>
+    <input type="password" />
+  </div>
+  <button>Sign In</button>
+</div>
+</section>
+
+
+
+<section id="top-container">
+  <div class="container-fluid">
+      <div class="sample-area">
+          <div>
+              <h1 id="tp-header" class="top-header">Samples</h1>
+          </div>
+             <hr>
+          <div class="row">
+              <div class="col-3 top-left-col bg-light btn-drop">
+                  <a href="#!" class="btn btn-dark btn-sm active col-button" role="button" aria-pressed="true">Samples</a>
+                  <a href="#!" class="btn btn-light btn-sm active col-button" role="button" aria-pressed="true">Presets</a>
+                  <div class="dropdown">
+                    <div class="btn btn-light btn-sm input-group mb-3">
+                      <div class="input-group-prepend">
+                        <!-- <label class="input-group-text" for="inputGroupSelect01">Popular</label> -->
+                      </div>
+                      <select class="custom-select" id="inputGroupSelect01">
+                        <option class="filter-select"value="1">Popular</option>
+                        <option  class="filter-select" value="2">Recent</option>
+                        <option  class="filter-select" value="3">Relevant</option>
+                      </select>
+                    </div>
+                </div>
+              </div>
+<!-- drop down menu BPM  -->
+            <div class="dropdown btn-drop">
+              <select class="custom-select" id="select-custom">
+                <option class="filter-select" value="all" selected>Loops & One Shots</option>
+                <option class="filter-select" value="loop">Loops</option>
+                <option class="filter-select" value="one-shot">One Shots</option>
+              </select>
+            </div>
+            <div class="btn-drop">
+              <button class="btn btn-light btn-sm active dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                BPM
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link active dropdown-item" id="home-tab" data-toggle="tab" href="#home"
+                      role="tab" aria-controls="home" aria-selected="true">BPM Range</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link dropdown-item" id="profile-tab" data-toggle="tab" href="#profile"
+                      role="tab" aria-controls="profile" aria-selected="false">Exact BPM</a>
+                    </li>
+                  </ul>
+                  <div class="dropdown-divider"></div>
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <input id="bpmrange" type="range" class="bpm-range form-control-range">
+                    <div class="dropdown-divider"></div>
+                    <input id="bpm-text" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                    <input id="bpm-text1" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                      <p>Enter BPM</p>
+                      <input id="bpm-text2" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                </div>
+                    <div class="dropdown-divider"></div>
+                  <button class="btn btn-primary btn-block bpm-button" role="button"> Update </button>
+              </div>
+            </div>
+<!-- drop down menu KEYS & Instruments -->
+              <div class="btn-drop">
+                <button class="btn btn-light btn-sm active dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Key
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <ul class="nav nav-tabs tabs2" id="myTab2" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link active dropdown-item" id="sharp-tab" data-toggle="tab" href="#sharp"
+                      role="tab" aria-controls="sharp" aria-selected="true">Flat</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <a class="nav-link dropdown-item" id="major-tab" data-toggle="tab" href="#major"
+                      role="tab" aria-controls="major" aria-selected="false">Sharp</a>
+                    </li>
+                  </ul>
+                  <div class="dropdown-divider"></div>
+<!-- Key Drop Down Menu -->
+                  <div class="tab-content" id="myTabContent2">
+                    <h6 class="root-note">ROOT NOTE</h6>
+                    <div class="dropdown-divider"></div>
+                    <div class="tab-pane fade show active" id="sharp" role="tabpanel" aria-labelledby="sharp-tab">
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Db">Db</button>
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Eb">Eb</button>
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Gb">Gb</button>
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Ab">Ab</button>
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Bb">Bb</button>
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Cmin">C</button>
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Dmin">D</button>
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Emin">E</button>
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Fmin">F</button>
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Gmin">G</button>
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Amin">A</button>
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Bmin">B</button>
+                    </div>
+
+                    <div class="tab-pane fade" id="major" role="tabpanel" aria-labelledby="major-tab">
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Cs">C#</button>
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Ds">D#</button>
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Fs">F#</button>
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Gs">G#</button>
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="As">A#</button>
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Cmaj">C</button>
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Dmaj">D</button>
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Emaj">E</button>
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Fmaj">F</button>
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Gmaj">G</button>
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Amaj">A</button>
+                      <button class="btn-notes filter-button" type="button" name="button" data-filter="Bmaj">B</button>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="btn-drop">
+              <button class="btn btn-light btn-sm active dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Instruments
+              </button>
+<!-- Instrument Drop Down Menu -->
+                <div class="dropdown-menu row inst-row" aria-labelledby="dropdownMenuButton">
+                  <div class="inst-col col-5">
+                    <h6><button class="btn btn-white btn-inst filter-button" name="button" data-filter="bass">Bass</button></h6>
+                    <h6><button class="btn btn-white btn-inst filter-button" name="button" data-filter="drum">Drums</button></h6>
+                    <h6><button class="btn btn-white btn-inst filter-button" name="button" data-filter="perc">Percussion</button></h6>
+                    <h6><button class="btn btn-white btn-inst filter-button" name="button" data-filter="string">Strings</button></h6>
+                    <h6><button class="btn btn-white btn-inst filter-button" name="button" data-filter="guitar">Guitar</button></h6>
+                  </div>
+
+                  <div class="inst-col col-5">
+                    <h6><button class="btn btn-white btn-inst filter-button" name="button" data-filter="synth">Synths</button></h6>
+                    <h6><button class="btn btn-white btn-inst filter-button" name="button" data-filter="pad">Pads</button></h6>
+                    <h6><button class="btn btn-white btn-inst filter-button" name="button" data-filter="fx">FX</button></h6>
+                    <h6><button class="btn btn-white btn-inst filter-button" name="button" data-filter="vocal">Vocals</button></h6>
+                    <h6><button class="btn btn-white btn-inst filter-button" name="button" data-filter="bnw">Brass & Woodlands</button></h6>
+                  </div>
+                </div>
+              </div>
+              <div class="btn-drop">
+                <button class="btn btn-light btn-sm active dropdown-toggle" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Genre
+                </button>
+<!-- Genre Drop Down Menu  -->
+                  <div class="dropdown-menu row inst-row" aria-labelledby="dropdownMenuButton">
+                    <div class="inst-col col-5">
+                      <h6><button class="btn btn-white btn-inst filter-button" name="button" data-filter="all">All</button></h6>
+                      <h6><button class="btn btn-white btn-inst filter-button" name="button" data-filter="edm">EDM</button></h6>
+                      <h6><button class="btn btn-white btn-inst filter-button" name="button" data-filter="house">House</button></h6>
+                      <h6><button class="btn btn-white btn-inst filter-button" name="button" data-filter="trap">Trap</button></h6>
+                      <h6><button class="btn btn-white btn-inst filter-button" name="button" data-filter="dubstep">Dubstep</button></h6>
+                      <h6><button class="btn btn-white btn-inst filter-button" name="button" data-filter="hybrid">Hybrid</button></h6>
+                      <h6><button class="btn btn-white btn-inst filter-button" name="button" data-filter="future-bass">Future Bass</button></h6>
+                    </div>
+
+                    <div class="inst-col col-5">
+                      <h6><button id="rnb" class="btn btn-white btn-inst filter-button" name="button" data-filter="rnb">R&B</button></h6>
+                      <h6><button class="btn btn-white btn-inst filter-button" name="button" data-filter="hip-hop">Hip Hop</button></h6>
+                      <h6><button class="btn btn-white btn-inst filter-button" name="button" data-filter="soul">Soul</button></h6>
+                      <h6><button class="btn btn-white btn-inst filter-button" name="button" data-filter="moombahton">Moombahton</button></h6>
+                      <h6><button class="btn btn-white btn-inst filter-button" name="button" data-filter="future-house">Future House</button></h6>
+                    </div>
+                  </div>
+                </div>
+
+
+        </div> <!-- end of row -->
+
+          <div class="top-info">
+              <h3 id="sp-header"class="sample-header">Explore Samples</h3>
+              <hr>
+              <h6>Page 1 - 56</h6>
+              <form class="form">
+                  <input id="sp-search" class="sample-search form-control form-control-sm" type="text" placeholder="search">
+              </form>
+
+          </div>
+          <br>
+          <div class="main-content" role="main">
+            <div id="main">
+              <div class="header-audio">
+                  <div class="header-titles container-fluid">
+                    <div class="row">
+                      <h5 class="col-lg-auto col-md-auto col-sm-1">   <input style="visibility:hidden" class="check-box" type="checkbox" aria-label="Checkbox for following text input"></h5>
+                      <h5 class="col-lg-1 col-md-2 col-sm-3 col-3 header-text pack-text">Pack</h5>
+                      <h5 class="col-lg-3 col-md-1 col-sm-1 col-2 header-text"></h5>
+                      <h5 class="col-lg-1 col-md-2 col-sm-1 text-center header-text header-dis-text">Time</h5>
+                      <h5 class="col-lg-3 col-md-3 col-sm-4 col-2 header-text">File Name</h5>
+                      <h5 class="col-lg-1 col-md-1 col-sm-1 text-center header-text header-dis-text">Key</h5>
+                      <h5 class="col-lg-1 col-md-1 col-sm-1 text-center header-text header-dis-text">BPM</h5>
+                    </div>
+                  </div>
+              </div>
+              <div class="body-audio">
+                  <div id="filter-rows" class="row-filter container-fluid">
+                    <div id="fav-row"class="row row-info filter hybrid Emin bass one-shot" data-eventtype="one-shot">
+                      <div class="col-lg-auto col-md-auto col-sm-1">
+                        <input class="check-box" type="checkbox" aria-label="Checkbox for following text input">
+                      </div>
+                        <div class="col-lg-1 col-md-2 col-sm-2 col-3">
+                          <img  src="https://i1.sndcdn.com/avatars-000247750402-qlz4k6-t200x200.jpg" class="img-fluid row-pack-img" alt="Pack image">
+                        </div>
+                        <div class="col-lg-3 col-md-1 col-sm-2 col-2">
+                          <div class="wave" data-path="sounds/RICKYXSAN_growl_one_shot_04_E.wav" >
+                            <button class="play-btn" type="button"></button>
+                            <div class="wave-container"></div>
+                        </div>
+                        </div>
+                          <div class="col-5 col-sm-4 text-middle pad-mid-text2">RICKYXSAN_gr_one_shot_04_E.wav</div>     <!-- this is hidden until screen gets smaller -->
+                          <div class="col-lg-1 col-md-2 col-sm-3  text-center text-middle pad-mid-text"><span >0:03</span></div>
+                          <div class="col-3  text-middle pad-mid-text">RICKYXSAN_growl_one_shot_04_E.wav</div>
+                          <div class="col-1 col-lg-1 col-md-1 col-sm-1  text-center text-middle pad-mid-text">E</div>
+                          <div class="col-1 col-lg-1 col-md-auto col-sm-auto text-center text-middle pad-mid-text">132</div>
+                          <div class="col-1 col-lg-1 col-md-1 side-btns">
+                              <button class="fv-btn like"  type="button"> </button>
+                              <a href="sounds/RICKYXSAN_growl_one_shot_04_E.wav" download> <button class="dl-btn"  type="button" name="button"><i class="fas fa-arrow-circle-down fa-2x text-middle"></i></button> </a>
+                          </div>
+                    </div>
+                    <div class="row row-info filter trap Cmin drum one-shot"  data-eventtype="one-shot">
+                      <div class="col-lg-auto col-md-auto col-sm-1">
+                        <input class="check-box" type="checkbox" aria-label="Checkbox for following text input">
+                      </div>
+                        <div class="col-lg-1 col-md-2 col-sm-2 col-3">
+                          <img  src="https://i1.sndcdn.com/avatars-000247750402-qlz4k6-t200x200.jpg" class="img-fluid row-pack-img" alt="Pack image">
+                        </div>
+                        <div class="col-lg-3 col-md-1 col-sm-2 col-2">
+                          <div class="wave" data-path="sounds/UZ_808_qx_04_F.wav" >
+                            <button class="play-btn" type="button"></button>
+                            <div class="wave-container"></div>
+                        </div>
+                        </div>
+                        <div class="col-5 col-sm-4  text-middle pad-mid-text2">FAT_808_2.wav</div>     <!-- this is hidden until screen gets smaller -->
+                        <div class="col-lg-1 col-md-2 col-sm-3 text-center text-middle pad-mid-text"><span >0:02</span></div>
+                        <div class="col-3 text-middle pad-mid-text">FAT_808_2.wav</div>
+                        <div class="col-1 text-center text-middle pad-mid-text">C</div>
+                        <div class="col-1 text-center text-middle pad-mid-text">132</div>
+                        <div class="col-1 col-lg-1 col-md-1 side-btns">
+                            <button class="fv-btn like"  type="button"> </button>
+                            <a href="sounds/UZ_808_qx_04_F.wav" download> <button class="dl-btn"  type="button" name="button"><i class="fas fa-arrow-circle-down fa-2x text-middle"></i></button> </a>
+                        </div>
+                    </div>
+                    <div class="row row-info filter future-bass Cmaj drum one-shot" data-eventtype="one-shot">
+                      <div class="col-lg-auto col-md-auto col-sm-1">
+                        <input class="check-box" type="checkbox" aria-label="Checkbox for following text input">
+                      </div>
+                        <div class="col-lg-1 col-md-2 col-sm-2 col-3">
+                          <img  src="https://i1.sndcdn.com/avatars-000247750402-qlz4k6-t200x200.jpg" class="img-fluid row-pack-img" alt="Pack image">
+                        </div>
+                        <div class="col-lg-3 col-md-1 col-sm-2 col-2">
+                          <div class="wave" data-path="sounds/CLF_ClosedHH_Trap.wav" >
+                            <button class="play-btn" type="button"></button>
+                            <div class="wave-container"></div>
+                        </div>
+                        </div>
+                        <div class="col-5 col-sm-4 text-middle pad-mid-text2">Closed_HH_trap.wav.wav</div>     <!-- this is hidden until screen gets smaller -->
+                        <div class="col-lg-1 col-md-2 col-sm-3 text-center text-middle pad-mid-text"><span >0:01</span></div>
+                        <div class="col-3 text-middle pad-mid-text">Closed_HH_trap.wav.wav</div>
+                        <div class="col-1 text-center text-middle pad-mid-text">C</div>
+                        <div class="col-1 text-center text-middle pad-mid-text">148</div>
+                        <div class="col-1 col-lg-1 col-md-1 side-btns">
+                            <button class="like fv-btn"  type="button"> </button>
+                            <a href="sounds/CLF_ClosedHH_Trap.wav" download> <button class="dl-btn"  type="button" name="button"><i class="fas fa-arrow-circle-down fa-2x text-middle"></i></button> </a>
+                        </div>
+                    </div>
+                    <div class="row row-info filter hip-hop Cmin drum perc loop" data-eventtype="loop">
+                      <div class="col-lg-auto col-md-auto col-sm-1">
+                        <input class="check-box" type="checkbox" aria-label="Checkbox for following text input">
+                      </div>
+                        <div class="col-lg-1 col-md-2 col-sm-2 col-3">
+                          <img  src="https://i1.sndcdn.com/avatars-000247750402-qlz4k6-t200x200.jpg" class="img-fluid row-pack-img" alt="Pack image">
+                        </div>
+                        <div class="col-lg-3 col-md-1 col-sm-2 col-2">
+                          <div class="wave" data-path="sounds/CLF_85_Drums_Golden.wav" >
+                            <button class="play-btn" type="button"></button>
+                            <div class="wave-container"></div>
+                        </div>
+                        </div>
+                        <div class="col-5 col-sm-4 text-middle pad-mid-text2">CLF_85_Drums_Golden.wav</div>     <!-- this is hidden until screen gets smaller -->
+                        <div class="col-lg-1 col-md-2 col-sm-3 text-center text-middle pad-mid-text"><span >0:07</span></div>
+                        <div class="col-3 text-middle pad-mid-text">CLF_85_Drums_Golden.wav</div>
+                        <div class="col-1 text-center text-middle pad-mid-text">C</div>
+                        <div class="col-1 text-center text-middle pad-mid-text">145</div>
+                        <div class="col-1 col-lg-1 col-md-1 side-btns">
+                            <button class="like fv-btn"  type="button"> </button>
+                            <a href="sounds/CLF_85_Drums_Golden.wav" download> <button class="dl-btn"  type="button" name="button"><i class="fas fa-arrow-circle-down fa-2x text-middle"></i></button> </a>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+
+      </div>
+  </div>
+
+</section>
+
+<%- include('partials/footer') %>
