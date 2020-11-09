@@ -28,9 +28,22 @@ h6 {
   /* margin-right: 10px; */
 
 }
-
+.px-2 {
+  padding-left: ($spacer * .3) !important;
+  padding-right: ($spacer * .3) !important;
+}
 .container-fluid {
       padding: 2% 15%;
+}
+
+.form-container{
+  padding:20px;
+}
+.file-container {
+  padding:25px;
+}
+.btn-logout {
+  float: right;
 }
 
 #nav {
@@ -46,6 +59,12 @@ h6 {
 .form-button {
     position: absolute;
     right:200px;
+}
+
+.sub-row {
+position: relative;
+left: 300px
+
 }
 
 #nav .container-fluid {

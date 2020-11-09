@@ -1,4 +1,4 @@
-
+require('dotenv').config()
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
+const findOrCreate = require('mongoose-findOrCreate');
 
 
 const app = express();
@@ -28,10 +30,17 @@ mongoose.set("useCreateIndex", true);
 
 const userSchema = new mongoose.Schema({
   email: String,
-  password: String
+  password: String,
+  fname: String,
+  lname: String,
+  // Address:String,
+  // City:String,
+  // State:String,
+  // Zip:
 });
 
 userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(findOrCreate);
 
 const User = new mongoose.model("User", userSchema);
 
@@ -51,10 +60,36 @@ app.use(function (req, res, next) { // need this in order for the login in butto
  res.locals.isAuthenticated = req.isAuthenticated();
  next();
 });
+app.use(function (req, res, next) { // need this in order for the login in button to switch back and forth from logout this let the template access isAuthenticated
+ res.locals.isAuthenticated = req.isAuthenticated();
+ next();
+});
+passport.use(new GoogleStrategy({
+    clientID: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    callbackURL: "http://localhost:3000/auth/google/index",
+    userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
 
 app.get("/", function(req, res){
   res.render("index");
 });
+
+app.get("/auth/google",
+  passport.authenticate("google", { scope:["profile"] })
+);
+app.get("/auth/google/index",
+  passport.authenticate('google', { failureRedirect: "/login" }),
+  function(req, res) {
+    // Successful authentication, redirectto secrets.
+    res.redirect("/index");
+  });
 
 app.get("/home", function(req, res){
   res.render("home");
@@ -75,10 +110,20 @@ app.get('/logout', function (req, res){
   console.log("Logged out");
 });
 
+app.get("/submission", function(req, res){
+  res.render("submission");
+
+});
+
 app.get("/account",function(req, res){
 
+  // User.find({}, function(err, foundUserInfo){
+  //   console.log(foundUserInfo);
+  //     res.render("account", {firstName: req.body.fname, lastName: foundUserInfo});
+  // });
   if(req.isAuthenticated()){
     res.render("account");
+
 
   }else{
     res.redirect("/login");
@@ -121,6 +166,30 @@ app.post("/register", function(req, res){
 //   });
 //
 // });
+app.post("/account", function(req, res){
+  const user = new User ({
+    fname: req.body.fname,
+    lname: req.body.lname
+  });
+
+  // console.log(user);
+  // const fname = req.body.fname;
+  // const lname = req.body.lname;
+  User.findById(req.user._id, function(err, foundUser){
+    if(err){
+      console.log(err);
+    }else {
+      if(foundUser){
+        foundUser.fname = user.fname;
+        foundUser.lname = user.lname;
+        foundUser.save(function(err){
+          res.redirect("/account");
+          console.log(foundUser);
+        });
+      }
+    }
+  });
+});
 
 app.post("/login", passport.authenticate("local",{
     successRedirect: "/account",
@@ -128,8 +197,6 @@ app.post("/login", passport.authenticate("local",{
 }), function(req, res){
 
 });
-
-
 
 // check isLoggedIn
 function isLoggedIn(req, res, next){
