@@ -84,6 +84,8 @@ passport.use(new GoogleStrategy({
   }
 ));
 
+// let accounts = [];
+
 app.get("/", function(req, res){
   res.render("index");
 });
@@ -95,7 +97,7 @@ app.get("/auth/google/samplr",
   passport.authenticate('google', { failureRedirect: "/login" }),
   function(req, res) {
     // Successful authentication, redirectto secrets.
-    res.redirect("/account");
+    res.redirect("/index");
   });
 
 app.get("/home", function(req, res){
@@ -122,7 +124,23 @@ app.get("/submission", function(req, res){
 
 });
 
-app.get("/account",function(req, res){
+app.route("/account/:accountName")
+
+.get(function(req, res){
+  User.findOne({fname: req.params.accountName}, function(err, foundAccount) {
+    if(foundAccount){
+      res.send(foundAccount);
+
+
+    }else {
+      res.send("no Account found");
+    }
+  });
+});
+
+app.route("/account")
+
+ .get(function(req, res){
 
   User.find({"_id": {$ne: null}}, function(err, foundUsers){
     if(err){
@@ -131,7 +149,7 @@ app.get("/account",function(req, res){
       if(foundUsers){
         // res.render("account", {usersWithName: foundUsers});
         if(req.isAuthenticated()){
-          res.render("account", {usersWithName: foundUsers});
+          res.render("account", {foundAccount: foundUsers});
           console.log(foundUsers);
         }else{
           res.redirect("/login");
@@ -152,14 +170,14 @@ app.post("/register", function(req, res){
       res.redirect("/register");
     }else{
       passport.authenticate("local")(req, res, function(){
-        res.redirect("/account");
+        res.redirect("/index");
       });
     }
   });
 });
 
 
-//
+
 // app.post("/login", function(req, res){
 //   const user = new User({
 //     username: req.body.username,
@@ -179,38 +197,30 @@ app.post("/register", function(req, res){
 //
 // });
 app.post("/account", function(req, res){
-  const user = new User({
+  const user ={
     fname: req.body.fname,
     lname: req.body.lname,
-    // email: req.body.email,
-    // password: req.body.password,
-    address: req.body.address,
-    city: req.body.city,
-    state: req.body.state,
-    zip: req.body.zip
-  });
-  // const userFname = req.body.fname;
 
-  User.findById(req.user._id, function(err, foundUser){
-    if(err){
-      console.log(err);
-    }else {
-      if(foundUser){
-        foundUser.fname = user.fname;
-        foundUser.lname = user.lname;
-        // foundUser.email = user.email;
-        // foundUser.password = user.password;
-        foundUser.address = user.address;
-        foundUser.city = user.city;
-        foundUser.state = user.state;
-        foundUser.zip = user.zip;
-        foundUser.save(function(){
-          res.redirect("/account");
-          console.log(foundUser);
-        });
-      }
-    }
+  };
+  // const userFname = req.body.fname;
+  User.find({}, function(err, users){
+    res.send(users);
   });
+  // User.findById(req.user._id, function(err, foundUser){
+  //   if(err){
+  //     console.log(err);
+  //   }else {
+  //     if(foundUser){
+  //       foundUser.fname = user.fname;
+  //       foundUser.lname = user.lname;
+  //
+  //       foundUser.save(function(){
+  //         res.redirect("/account");
+  //         console.log(foundUser);
+  //       });
+  //     }
+  //   }
+  // });
 });
 // app.get("/account/:accountId", function(req, res){
 //   const accountIdReq = req.params.accountId;
@@ -224,7 +234,7 @@ app.post("/account", function(req, res){
 //
 // });
 app.post("/login", passport.authenticate("local",{
-    successRedirect: "/account",
+    successRedirect: "/",
     failureRedirect: "/login"
 }), function(req, res){
 
