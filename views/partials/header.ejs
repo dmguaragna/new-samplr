@@ -24,7 +24,7 @@
     <section id="nav">
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg navbar-dark">
-                <a id="samplr" class="navbar-brand" href="index">samplr</a>
+                <a id="samplr" class="navbar-brand" href="/">samplr</a>
                   <form id="top-form" class="form-row">
                       <input class="form-input .col-auto form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                       <button class="form-button btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
@@ -37,13 +37,25 @@
                 <div class="collaspe navbar-collapse" id="navbarTogglerDemo01">
                   <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
+                       <a class="nav-link" href="home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="account">Account</a>
+                    </li>
+                    <li class="nav-item">
                        <a class="nav-link" href="">Presets</a>
                     </li>
                     <li class="nav-item">
-                       <a class="nav-link" href="index">Samples</a>
+                       <a class="nav-link" href="/">Samples</a>
                     </li>
                     <li class="nav-item">
-                       <a class="nav-link" href="login">Login</a>
+
+                    <%  if(isAuthenticated){ %>
+                        <a id="log"class="nav-link" href="/logout">Logout</a>
+                    <%   } else { %>
+                          <a id="log" class="nav-link" href="/login">Login</a>
+                    <%   } %>
+
                     </li>
                   </ul>
                     <form class="form-row-collapse align-items-center">
